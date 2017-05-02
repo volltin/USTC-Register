@@ -1,0 +1,7 @@
+flask
+flask-sqlalchemy
+sqlalchemy-migrate
+flask-wtf
+flask-admin
+flask-bootstrap
+flask-nav
