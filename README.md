@@ -1,13 +1,14 @@
 # USTC-Register
 A simple flask app for event registration.
 
-*** WARNING: THIS IS A DEMO VERSION UNDER DEVELOPING. ***
+**WARNING: THIS IS A DEMO VERSION UNDER DEVELOPING.**
 
 # Init
 
 modify the `SECRET_KEY` in `config.py`
 
 ```
+pip install -r requirements.txt
 python db_create.py
 python db_migrate.py
 python db_upgrade.py
