@@ -27,14 +27,54 @@
     </div>
     <div class="event-list">
     {% from "bootstrap/pagination.html" import render_pagination %}
+    {% from "bootstrap/utils.html" import icon %}
 
-    {% for event in events_query.items %}
-        <p>
-            {{ event.name }}
-            <a class="btn btn-lg btn-default" role="button"
-                href="{{ url_for('register', event_id=event.event_id) }}" >Register</a>
-        </p>
-    {% endfor %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    Register Start Time
+                </td>
+                <td>
+                    Register End Time
+                </td>
+                <td>
+                    Number
+                </td>
+                <td>
+                    Register
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in events_query.items %}
+            <tr>
+                <td>
+                    {{ event.name }}
+                </td>
+                <td>
+                    {{ event.register_start_time }}
+                </td>
+                <td>
+                    {{ event.register_end_time }}
+                </td>
+                <td>
+                    {{ event.max_number }}
+                </td>
+                <td>
+                    <a href="{{ url_for('register', event_id=event.event_id) }}"
+                       class="btn btn-default btn-sm" role="button">
+                        {{ 'Register ' + icon('chevron-right') }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 
     {{render_pagination(events_query)}}
     </div>

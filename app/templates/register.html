@@ -27,15 +27,17 @@
         <h1>{{ event.name }}</h1>
         <p> Start Time: {{ event.register_start_time }} </p>
         <p> End Time: {{ event.register_end_time }} </p>
-        <p> Max Number: {{ event.max_number }} </p>
         <p> Current Number : {{ event.registrants.count() }}</p>
-        <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-success" role="progressbar"
-                 aria-valuenow="{{ event.registrants.count() }}" aria-valuemin="0" aria-valuemax="{{ event.max_number }}"
-            style="width: {{ 100.0*event.registrants.count()/event.max_number }}%;">
-                <span class="sr-only">{{ event.registrants.count() }} / {{ event.max_number }} registered.</span>
+        {% if event.max_number %}
+            <p> Max Number: {{ event.max_number }} </p>
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-success" role="progressbar"
+                     aria-valuenow="{{ event.registrants.count() }}" aria-valuemin="0" aria-valuemax="{{ event.max_number }}"
+                style="width: {{ 100.0*(event.registrants.count())/(event.max_number) }}%;">
+                    <span class="sr-only">{{ event.registrants.count() }} / {{ event.max_number }} registered.</span>
+                </div>
             </div>
-        </div>
+        {% endif %}
     </div>
     <div class="register-form">
         {{ wtf.quick_form(form) }}

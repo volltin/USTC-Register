@@ -5,7 +5,7 @@
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, HiddenField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, Email, Length
+from wtforms.validators import DataRequired, Email, Length, Regexp
 
 from datetime import datetime
 
@@ -14,11 +14,11 @@ from app.models import Registrant, Event
 class RegisterForm(FlaskForm):
     event_id = HiddenField('event_id', validators=[DataRequired()])
     event_name = StringField('event name', render_kw={'readonly': True})
-    name = StringField('name', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired(), Length(0, 30)])
     reason = TextAreaField('reason', description="Less than 500 words", validators=[Length(0, 500)])
-    email = StringField('email', validators=[DataRequired(), Email()])
-    mobile = StringField('mobile', validators=[DataRequired()])
-    ustc_id = StringField('ustc id', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired(), Email(), Length(0, 64)])
+    mobile = StringField('mobile', validators=[DataRequired(), Regexp(r'^1[3|4|5|7|8][0-9]\d{8}$')])
+    ustc_id = StringField('ustc id', validators=[DataRequired(), Length(0, 10)])
     submit = SubmitField('Submit')
 
     def validate(self):
