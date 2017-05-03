@@ -100,3 +100,6 @@ ENV/
 # db
 db_repository/
 app.db
+
+# pycharm
+.idea/
