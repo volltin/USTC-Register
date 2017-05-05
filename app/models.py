@@ -19,7 +19,7 @@ class Event(db.Model):
     registrants = db.relationship('Registrant', backref='event', lazy='dynamic')
 
     def __repr__(self):
-        return u'<Event %r>' % (self.name)
+        return u'<Event %s>' % (self.name)
 
 class Registrant(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -37,5 +37,5 @@ class Registrant(db.Model):
         info = self.name
         if (self.ustc_id):
             info += "(%s)" % self.ustc_id
-        return u'<Registrant %r>' % info
+        return u'<Registrant %s>' % info
 
