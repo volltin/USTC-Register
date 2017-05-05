@@ -5,7 +5,7 @@ A simple flask app for event registration.
 
 # Init
 
-Modify the `SECRET_KEY` in `config.py`.
+Modify the `ADMIN_USER`, `ADMIN_PASS`, `USTC_CAS_URL`, `SECRET_KEY` in `config.py`.
 
 ```
 pip install -r requirements.txt
