@@ -15,6 +15,7 @@ class Event(db.Model):
     need_ustc_id = db.Column(db.Boolean)
     need_mobile = db.Column(db.Boolean)
     need_email = db.Column(db.Boolean)
+    need_gender = db.Column(db.Boolean)
     registrants = db.relationship('Registrant', backref='event', lazy='dynamic')
 
     def __repr__(self):
@@ -25,11 +26,12 @@ class Registrant(db.Model):
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'))
     name = db.Column(db.String(50))
     ustc_id = db.Column(db.String(50))
+    gender = db.Column(db.Integer)
     mobile = db.Column(db.String(50))
     email = db.Column(db.String(50))
     reason = db.Column(db.String(1000))
     register_time = db.Column(db.DateTime)
-    reject = db.Column(db.Boolean)
+    reject = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
         info = self.name

@@ -5,3 +5,4 @@ flask-wtf
 flask-admin
 flask-bootstrap
 flask-nav
+requests

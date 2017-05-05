@@ -5,7 +5,7 @@
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
-from .models import Event, Registrant
+from app.models import Event, Registrant
 from app import db
 
 admin = Admin(name='USTC-Register')

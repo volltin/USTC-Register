@@ -3,7 +3,7 @@
 # @Author  : Jiyan He <ustchjy@gmail.com>
 # @File    : views.py
 
-from flask import render_template, flash, redirect, abort
+from flask import render_template, flash, redirect, request, session, url_for
 from app import app, db
 from .forms import creat_register_form
 from .models import Registrant, Event
@@ -30,6 +30,19 @@ def register(event_id):
     if not event:
         flash("Event not found", "warning")
         return redirect('/')
+
+    if request.args.get('ticket') and request.args.get('service'):
+        from app.ext.ustc_cas import USTCCas
+        ticket = request.args.get('ticket')
+        service = request.args.get('service')
+        cas = USTCCas(ticket=ticket, service=service)
+        ustc_id = cas.get_ustc_id()
+        if ustc_id:
+            session["ustc_id"] = ustc_id
+            return redirect(url_for('register', event_id=event_id))
+        else:
+            flash("Login from USTC failed.", "warning")
+            return redirect('/')
 
     form = creat_register_form(event)
 

@@ -6,18 +6,18 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 app.config.from_object('config')
 
 db = SQLAlchemy(app)
 
-from app import views, models
+from app import models
 
-from app import admin
+from app.ext import bootstrap, nav, admin
+
 admin.admin.init_app(app)
-
-from app import bootstrap
 bootstrap.bootstrap.init_app(app)
-
-from app import nav
 nav.nav.init_app(app)
+
+from app import views

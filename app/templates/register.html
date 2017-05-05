@@ -8,6 +8,11 @@
 {% import "bootstrap/utils.html" as utils %}
 {% import "bootstrap/wtf.html" as wtf %}
 
+{# Styles #}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='register.css')}}">
+{% endblock %}
 
 {# Inside the ``content`` is where you should place most of your own stuff.
    This will keep scripts at the page end and a navbar you add on later
@@ -25,11 +30,13 @@
   {%- endwith %}
     <div class="event">
         <h1>{{ event.name }}</h1>
-        <p> Start Time: {{ event.register_start_time }} </p>
-        <p> End Time: {{ event.register_end_time }} </p>
-        <p> Current Number : {{ event.registrants.count() }}</p>
+        <p> 报名开始时间: {{ event.register_start_time }} </p>
+        <p> 报名结束时间: {{ event.register_end_time }} </p>
+        <p> 已报名人数 : {{ event.registrants.count() }}</p>
         {% if event.max_number %}
-            <p> Max Number: {{ event.max_number }} </p>
+        <p> 最大报名人数: {{ event.max_number }} </p>
+        {% endif %}
+        {% if event.max_number %}
             <div class="progress progress-striped active">
                 <div class="progress-bar progress-bar-success" role="progressbar"
                      aria-valuenow="{{ event.registrants.count() }}" aria-valuemin="0" aria-valuemax="{{ event.max_number }}"
@@ -38,6 +45,12 @@
                 </div>
             </div>
         {% endif %}
+        <div class="event-desc-block">
+            <label class="event-desc-label">活动介绍</label>
+            <div class="event-desc-content">
+                {{ event.desc }}
+            </div>
+        </div>
     </div>
     <div class="register-form">
         {{ wtf.quick_form(form) }}

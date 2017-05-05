@@ -33,19 +33,22 @@
         <thead>
             <tr>
                 <td>
-                    Name
+                    活动名称
                 </td>
                 <td>
-                    Register Start Time
+                    报名开始时间
                 </td>
                 <td>
-                    Register End Time
+                    报名结束时间
                 </td>
                 <td>
-                    Number
+                    最大报名人数
                 </td>
                 <td>
-                    Register
+                    已报名人数
+                </td>
+                <td>
+                    报名
                 </td>
             </tr>
         </thead>
@@ -63,6 +66,9 @@
                 </td>
                 <td>
                     {{ event.max_number }}
+                </td>
+                <td>
+                    {{ event.registrants.count() }}
                 </td>
                 <td>
                     <a href="{{ url_for('register', event_id=event.event_id) }}"
