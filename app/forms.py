@@ -6,7 +6,7 @@
 from app import app
 from flask import session, url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, HiddenField, SubmitField, TextAreaField, SelectField
+from wtforms import StringField, HiddenField, SubmitField, TextAreaField, SelectField, PasswordField
 from wtforms.validators import DataRequired, Email, Length, Regexp
 
 from datetime import datetime
@@ -84,3 +84,8 @@ def creat_register_form(event):
         if ustc_id:
             form.ustc_id.data = ustc_id
     return form
+
+class AdminLoginForm(FlaskForm):
+    username = StringField(u'用户名', validators=[DataRequired()])
+    password = PasswordField(u'密码', validators=[DataRequired()])
+    submit = SubmitField(u'登录')
