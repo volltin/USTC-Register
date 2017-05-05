@@ -16,7 +16,7 @@ ADMIN_PASS = '-1s-1s-1s-1s'
 EVENT_PER_PAGE = 10
 
 # 统一认证登陆地址 (See: https://github.com/volltin/USTC-CAS-Redirect)
-USTC_CAS_URL = "https://home.ustc.edu.cn/~yourname/cas/index.html?id=%d"
+USTC_CAS_URL = "http://home.ustc.edu.cn/~yourname/cas/index.html?id=%d"
 
 # 用于防止 CRRF 攻击的 key
 SECRET_KEY = '+1s+1s+1s+1s'
