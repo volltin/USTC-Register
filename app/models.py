@@ -39,3 +39,5 @@ class Registrant(db.Model):
             info += "(%s)" % self.ustc_id
         return u'<Registrant %s>' % info
 
+
+
