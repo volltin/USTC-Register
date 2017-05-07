@@ -5,9 +5,10 @@ A simple flask app for event registration.
 
 # Init
 
-Modify the `ADMIN_USER`, `ADMIN_PASS`, `USTC_CAS_URL`, `SECRET_KEY` in `config.py`.
+Modify the `ADMIN_USER`, `ADMIN_PASS`, `USTC_CAS_URL`, `SECRET_KEY` in `config_sample.py`.
 
 ```
+cp config_sample.py config.py
 pip install -r requirements.txt
 python db_create.py
 python db_migrate.py
@@ -16,7 +17,7 @@ python db_upgrade.py
 
 # Run
 ```
-python ustc_register.py
+python app.py
 ```
 
 # Manager
