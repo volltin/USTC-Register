@@ -70,7 +70,7 @@ def creat_register_form(event):
 
     if not session.get("ustc_id"):
         cas_url = app.config.get("USTC_CAS_URL") % event.event_id
-        form.ustc_id.label.text += u' <a href="%s" class="btn btn-info btn-xs">点击绑定学号</a>' % cas_url
+        form.ustc_id.label.text += u' <a href="%s" class="btn btn-info btn-xs" id="bind_ustc_id">点击绑定学号</a>' % cas_url
     if not event.need_email:
         del form.email
     if not event.need_mobile:
