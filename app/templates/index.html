@@ -7,6 +7,11 @@
    bootstrap friendly manner #}
 {% import "bootstrap/utils.html" as utils %}
 
+{# Styles #}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='index.css')}}">
+{% endblock %}
 
 {# Inside the ``content`` is where you should place most of your own stuff.
    This will keep scripts at the page end and a navbar you add on later
@@ -71,5 +76,8 @@
 
 
     {{render_pagination(events_query)}}
+
     </div>
+  </div>
+   {{super()}}
 {%- endblock %}

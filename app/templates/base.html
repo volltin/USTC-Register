@@ -36,3 +36,16 @@
 {% block navbar %}
     {{nav.ustc_register_nav.render()}}
 {% endblock %}
+
+{%- block content %}
+{{super()}}
+    {%- block footer %}
+<footer class="footer">
+      <div class="container">
+          <p class="text-muted">Powered by
+              <a href="https://github.com/volltin/USTC-Register">USTC-Register</a>
+          </p>
+      </div>
+    </footer>
+{%- endblock footer %}
+{%- endblock content %}
