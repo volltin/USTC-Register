@@ -21,7 +21,7 @@ class RegisterForm(FlaskForm):
     gender = SelectField(u'性别', choices=[(u'0', u'男生'), (u'1', u'女生')])
     email = StringField(u'E-mail', validators=[DataRequired(), Email(), Length(0, 64)])
     mobile = StringField(u'联系电话', validators=[DataRequired(), Regexp(r'^1[3|4|5|7|8][0-9]\d{8}$')])
-    reason = TextAreaField(u'报名理由', description=u"200 字以内（可空）", validators=[Length(0, 200)])
+    reason = TextAreaField(u'报名理由', description=u"请仔细阅读活动简介后填写，200 字以内（可空）", validators=[Length(0, 200)])
     submit = SubmitField(u'提交')
 
     def validate_ustc_id(self, data):
