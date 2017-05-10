@@ -53,7 +53,7 @@ def register(event_id):
         db.session.add(registrant)
         db.session.commit()
 
-        flash("Regiser success.")
+        flash("报名成功！")
         return redirect('/index')
 
     return render_template('register.html',

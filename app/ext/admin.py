@@ -60,6 +60,7 @@ class RegistrantView(ModelView):
     can_set_page_size = True
 
     column_searchable_list = ('event_id',)
+    form_choices = {'gender': [(0, u'男'), (1, u'女')],}
 
     def __init__(self, cls, **kwargs):
         # You can pass name and other parameters if you want to
