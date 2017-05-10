@@ -34,7 +34,7 @@ class LoginView(BaseView):
             return False
         return True
 
-class MyView(ModelView):
+class EventView(ModelView):
     can_create = True
     can_export = True
     can_edit = True
@@ -44,7 +44,26 @@ class MyView(ModelView):
 
     def __init__(self, cls, **kwargs):
         # You can pass name and other parameters if you want to
-        super(MyView, self).__init__(cls, db.session, **kwargs)
+        super(EventView, self).__init__(cls, db.session, **kwargs)
+
+    def is_accessible(self):
+        if session.get("admin_username"):
+            return True
+        return False
+
+class RegistrantView(ModelView):
+    can_create = True
+    can_export = True
+    can_edit = True
+    can_delete = True
+    can_view_details = True
+    can_set_page_size = True
+
+    column_searchable_list = ('event_id',)
+
+    def __init__(self, cls, **kwargs):
+        # You can pass name and other parameters if you want to
+        super(RegistrantView, self).__init__(cls, db.session, **kwargs)
 
     def is_accessible(self):
         if session.get("admin_username"):
@@ -52,8 +71,9 @@ class MyView(ModelView):
         return False
 
 
+
 admin = Admin(name='USTC-Register')
 
 admin.add_view(LoginView(name='Login'))
-admin.add_view(MyView(Event))
-admin.add_view(MyView(Registrant))
+admin.add_view(EventView(Event))
+admin.add_view(RegistrantView(Registrant))
