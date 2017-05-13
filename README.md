@@ -25,3 +25,6 @@ python app.py
 ```
 http://YOUR_HOST:YOUR_PORT/admin
 ```
+
+# About CAS
+See https://github.com/volltin/USTC-CAS-Redirect
