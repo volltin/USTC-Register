@@ -4,6 +4,7 @@
 # @File    : views.py
 
 from flask import render_template, flash, redirect, request, session, url_for
+from sqlalchemy import desc
 from app import app, db
 from .forms import creat_register_form
 from .models import Registrant, Event
@@ -18,7 +19,7 @@ def page_not_found(e):
 @app.route('/index/<int:page>')
 def index(page = 1):
     per_page = app.config["EVENT_PER_PAGE"]
-    events_query = Event.query.paginate(page, per_page, False)
+    events_query = Event.query.order_by(desc(Event.event_id)).paginate(page, per_page, False)
     return render_template("index.html",
         events_query = events_query,
         title = 'Home')
@@ -53,7 +54,7 @@ def register(event_id):
         db.session.add(registrant)
         db.session.commit()
 
-        flash("报名成功！")
+        flash("S")
         return redirect('/index')
 
     return render_template('register.html',
